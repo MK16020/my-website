@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 
 import '../constants/colors.dart';
 import '../constants/projects.dart';
-import '../styles/custom_button.dart';
 import '../styles/regular_text.dart';
 import '../styles/text_header.dart';
 import '../styles/text_header_2.dart';
@@ -56,7 +56,18 @@ class ProjectMobile extends StatelessWidget {
                     color: CustomColor.whiteSecondary,
                   ),
                   const SizedBox(height: 20),
-                  CustomButton(title: 'View it in GitHub', onPressed: () {}, color: CustomColor.btnPrimary),
+                  Link(
+                    uri: Uri.parse(project['GitHub']),
+                    target: LinkTarget.blank,
+                    builder: (BuildContext ctx, FollowLink? openLink) {
+                      return TextButton(
+                        onPressed: openLink,
+                        child: const RegularText(
+                          data: 'View it in GitHub',
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

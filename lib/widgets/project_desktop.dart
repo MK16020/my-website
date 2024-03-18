@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 
 import '../constants/colors.dart';
 import '../constants/projects.dart';
-import '../styles/custom_button.dart';
 import '../styles/regular_text.dart';
 import '../styles/text_header.dart';
 import '../styles/text_header_2.dart';
@@ -71,8 +71,22 @@ class ProjectDesktop extends StatelessWidget {
                             data: project['description'],
                           ),
                         ),
-                        const SizedBox(height: 30),
-                        CustomButton(title: 'View it in GitHub', onPressed: () {}, color: CustomColor.btnPrimary),
+                        const SizedBox(height: 40),
+                        Link(
+                          uri: Uri.parse(project['GitHub']),
+                          target: LinkTarget.blank,
+                          builder: (context, FollowLink? openLink) => TextButton(
+                            onPressed: openLink,
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              color: CustomColor.bgLight2,
+                              child: const RegularText(
+                                data: 'View it in GitHub',
+                                color: CustomColor.whiteSecondary,
+                              ),
+                            ),
+                          ),
+                        ),
                         const SizedBox(height: 30),
                       ],
                     ),
